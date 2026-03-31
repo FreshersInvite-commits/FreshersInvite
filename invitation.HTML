@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Freshers Party Invitation</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Poppins", Arial, sans-serif;
+
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
+        url("https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg")
+          center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* CONFETTI BACKGROUND ANIMATION */
+    .confetti-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 18px;
+      border-radius: 2px;
+      opacity: 0.9;
+      animation: confettiFall 6s ease-in-out infinite;
+    }
+
+    .confetti:nth-child(1)  { background:#f2d74e; left: 5%;  animation-delay: 0s;   animation-duration: 7s; }
+    .confetti:nth-child(2)  { background:#95c3de; left: 15%; animation-delay: -2s; animation-duration: 6s; }
+    .confetti:nth-child(3)  { background:#ff9a91; left: 25%; animation-delay: -1s; animation-duration: 7s; }
+    .confetti:nth-child(4)  { background:#f2d74e; left: 35%; animation-delay: -3s; animation-duration: 6.5s; }
+    .confetti:nth-child(5)  { background:#95c3de; left: 45%; animation-delay: -4s; animation-duration: 7.2s; }
+    .confetti:nth-child(6)  { background:#ff9a91; left: 55%; animation-delay: -1.5s; animation-duration: 6.3s; }
+    .confetti:nth-child(7)  { background:#f2d74e; left: 65%; animation-delay: -3.5s; animation-duration: 7.4s; }
+    .confetti:nth-child(8)  { background:#95c3de; left: 75%; animation-delay: -2.2s; animation-duration: 6.7s; }
+    .confetti:nth-child(9)  { background:#ff9a91; left: 85%; animation-delay: -5s;  animation-duration: 7s; }
+    .confetti:nth-child(10) { background:#f2d74e; left: 95%; animation-delay: -2.8s; animation-duration: 6.8s; }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translate3d(0, -110%, 0) rotateZ(0deg) rotateY(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      50% {
+        transform: translate3d(-10vw, 40vh, 0) rotateZ(140deg) rotateY(360deg);
+      }
+      100% {
+        transform: translate3d(10vw, 110vh, 0) rotateZ(280deg) rotateY(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* BLACK & GOLD CARD */
+    .card {
+      background: radial-gradient(circle at top left, #222 0%, #050505 55%, #000 100%);
+      border-radius: 22px;
+      padding: 38px 46px;
+      width: 90%;
+      max-width: 540px;
+      box-shadow:
+        0 0 28px rgba(0, 0, 0, 0.9),
+        0 18px 40px rgba(0, 0, 0, 0.95);
+      text-align: center;
+      color: #f5e9c9;
+      backdrop-filter: blur(8px);
+
+      opacity: 0;
+      transform: translateY(20px) scale(0.97);
+      animation: fadeInCard 1.2s ease-out forwards;
+
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* GOLDEN BORDER GLOW */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from 180deg,
+        #f5d270,
+        #f3b43d,
+        #b88624,
+        #f7e7ad,
+        #f5d270
+      );
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: 20px;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.08), rgba(0,0,0,0.9));
+      z-index: -1;
+    }
+
+    @keyframes fadeInCard {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(0) scale(1.01);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .subtitle {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #f8e9b3;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff8dc;
+    }
+
+    .line {
+      height: 3px;
+      width: 120px;
+      background: linear-gradient(90deg, #f5d270, #f3b43d, #fff3be);
+      margin: 14px auto 22px;
+      border-radius: 999px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 23px;
+      color: #ffeaa7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info {
+      margin: 6px 0;
+      font-size: 15px;
+      color: #f9f1d5;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #ffeaa7;
+    }
+
+    .message {
+      margin: 22px 0 10px;
+      font-size: 15px;
+      color: #fff7de;
+      line-height: 1.7;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #f0e2b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONFETTI BACKGROUND ANIMATION -->
+  <div class="confetti-layer">
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+  </div>
+
+  <div class="card">
+    <div class="subtitle">UIET · CSE · Civil</div>
+    <h1>You’re Invited!</h1>
+    <div class="line"></div>
+    <h2 id="usernameDisplay"></h2>
+
+    <p class="info"><span class="label">Date:</span> 7 April 2026 (TUESDAY)</p>
+    <p class="info"><span class="label">Time:</span> 10:30 AM onwards</p>
+    <p class="info"><span class="label">Venue:</span> Parking Area UIET </p>
+
+    <p class="message">
+      Hey freshers and seniors,
+      Get ready for a fun‑filled day with music, games, dance and lots of photos 
+      as we celebrate both a warm welcome to the new UIET family members and a heartfelt farewell to our outgoing batch.
+    </p>
+
+    <p class="message">
+      Come, make new friends, cherish old bonds,
+       interact with your seniors and juniors, and create memories you’ll never forget! ✨
+    </p>
+
+    <div class="footer-note">
+      Dress code: Smart casual · Bring your energy, your smiles and your squad!
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("username");
+
+    if (name) {
+      document.getElementById("usernameDisplay").innerText =
+        "Welcome, " + name + " 🎉";
+    } else {
+      document.getElementById("usernameDisplay").innerText =
+        "Welcome, Guest 🎉";
+    }
+  </script>
+</body>
+</html>
